@@ -4,20 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Title</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 </head>
 <body>
 
 <style>
     .menu{
         display:flex;
-
     }
 
     .banner img{
         width:100%;
     }
     .menu-item{
+        padding:10px 10px;
+    }
 
+
+    .menu-sublist-item{
+        /*display:flex;*/
+        /*justify-content:flex-start;*/
+        padding:10px 15px;
+        display:block;
+        text-decoration: none;
+    }
+
+    .menu-sublist-item img{
+        width:80px;
+        height:60px;
+    }
+    .menu-sublist-item h3{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-weight: 400;
+        font-size: 16px;
+        color: #000;
+    }
+    .menu-sublist-item .sub-img-cnt{
+        float:left;
+        margin-right:10px;
+    }
+    .menu-sublist-item .sub-des-cnt p {
+        font-size: 13px;
+        color: #999;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        line-height: 1.4;
+    }
+    *{
+        font-style:normal;
+        margin:0px;
+        padding:0px;
     }
 </style>
 
@@ -27,11 +68,49 @@
 
 <div class="menu">
 
-    <div class="menu-item">孕期知识</div>
     <div class="menu-item">孕期工具</div>
-
+    <div class="menu-item">孕期知识</div>
 
 </div>
+
+<a class="menu-sublist" href="tools1.html">
+    <div class="menu-sublist-item">
+        <div class="sub-img-cnt"><img src="imgs/yiyu.jpg"></div>
+        <div class="sub-des-cnt">
+            <h3>抑郁症是一种常见的精神疾患。全球有超过3亿人患有抑郁症，遍布各个各年龄组。抑郁症是世界各地的首要致残原因，它是导致全球疾病负担的一个重大因素。</h3>
+            <p>
+                抑郁症是全球一种常见病，有超过3亿名患者。抑郁症不同于通常的情绪波动和对日常生活中挑战产生的短暂情绪反应。尤其是，长期的中度或重度抑郁症可能成为一个严重的疾患。
+            </p>
+        </div>
+    </div>
+    <div class="menu-sublist-item"></div>
+</a>
+
+
+<div class="menu-sublist">
+    <div class="menu-sublist-item">
+        <div class="sub-img-cnt"><img src="imgs/yunfu.jpg"></div>
+        <div class="sub-des-cnt">
+            <h3>抑郁症是一种常见的精神疾患。全球有超过3亿人患有抑郁症，遍布各个各年龄组。抑郁症是世界各地的首要致残原因，它是导致全球疾病负担的一个重大因素。</h3>
+            <p>
+                抑郁症是全球一种常见病，有超过3亿名患者。抑郁症不同于通常的情绪波动和对日常生活中挑战产生的短暂情绪反应。尤其是，长期的中度或重度抑郁症可能成为一个严重的疾患。
+            </p>
+        </div>
+    </div>
+    <div class="menu-sublist-item"></div>
+</div>
+
+
+
+<script>
+    $(function(){
+        $(".menu-item").click(function(){
+            var index = $(this).index();
+            $(".menu-sublist").hide().eq(index).show();
+
+        })
+    })
+</script>
 
 </body>
 </html>
