@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Title</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+</head>
+<body>
+
+<style>
+    h3{
+        margin:0px;
+    }
+    a{
+        text-decoration:none;
+    }
+    .menu{
+        display:flex;
+    }
+
+    .banner img{
+        width:100%;
+    }
+    .menu-item{
+        padding:10px 10px;
+    }
+
+
+    .menu-sublist-item{
+        /*display:flex;*/
+        /*justify-content:flex-start;*/
+        padding:10px 15px;
+        display:block;
+        text-decoration: none;
+    }
+
+    .menu-sublist-item img{
+        width:80px;
+        height:60px;
+    }
+    .menu-sublist-item h3{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-weight: 400;
+        font-size: 16px;
+        color: #000;
+    }
+    .menu-sublist-item .sub-img-cnt{
+        float:left;
+        margin-right:10px;
+    }
+    .menu-sublist-item .sub-des-cnt p {
+        font-size: 13px;
+        color: #999;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        line-height: 1.4;
+    }
+
+    table{
+        width:100%;
+        border:1px;
+        /*border-spacing: 0px;*/
+    }
+
+    table thead th{
+        width:20%;
+    }
+    td{
+        padding:0px;
+        border-bottom: 1px solid black;
+    }
+
+
+</style>
+
+<div id="container">
+
+    <!--<thead>-->
+    <!--<th>次数</th>-->
+    <!--<th>时间</th>-->
+    <!--<th>产检项目</th>-->
+    <!--<th>温馨提示</th>-->
+    <!--</thead>-->
+
+    <table>
+        <thead>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="1">次数</td>
+                <td colspan="4">1562</td>
+            </tr>
+            <tr>
+                <td colspan="1">时间</td>
+                <td colspan="4">12周</td>
+            </tr>
+            <tr>
+                <td colspan="1">产检项目</td>
+                <td colspan="4">量体重和血压 胎心 验尿 抽血 NT</td>
+            </tr>
+            <tr>
+                <td colspan="1">温馨提示</td>
+                <td colspan="4">每位准妈妈在孕期第12周时，都正式开始进行第1次产检。由于此时已经进入相对稳定的阶段，一般医院会给妈妈们办理“孕妇健康手册”。</td>
+            </tr>
+            <!--<tr>-->
+                <!--<td>第1次产检</td>-->
+                <!--<td>12周</td>-->
+                <!--<td>量体重和血压 胎心 验尿 抽血 NT</td>-->
+                <!--<td>每位准妈妈在孕期第12周时，都正式开始进行第1次产检。由于此时已经进入相对稳定的阶段，一般医院会给妈妈们办理“孕妇健康手册”。</td>-->
+            <!--</tr>-->
+        </tbody>
+    </table>
+
+
+</div>
+
+
+
+</body>
+</html>

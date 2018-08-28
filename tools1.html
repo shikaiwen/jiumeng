@@ -5,17 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Tools1</title>
 
+    <link rel="stylesheet" href="common.css">
+
+
+    <!--  icheck使用介绍    http://www.51xuediannao.com/js/jquery/icheck.html-->
+
+    <!--
+
+
+    关于vertical-align居中  https://www.cnblogs.com/hykun/p/3937852.html
+
+    -->
+
+
+
+    <link rel="stylesheet" href="icheck-1.0.2/skins/all.css">
+
+    <script src="js/jquery.js"></script>
+    <script src="icheck-1.0.2/icheck.min.js"></script>
 
     <style>
 
-
+        *{
+            box-sizing: border-box;
+        }
         html,body{
             height:100%;
             padding:0px;
             margin:0px;
         }
+
         .part1{
             height:50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .part2{
             height:15%;
@@ -24,32 +48,216 @@
             /*height:20%;*/
         }
 
+        .part1-cnt{
+            /*padding-top:30%;*/
+
+        }
+
+        .part2 img{
+            width:50px;
+            height:50px;
+        }
+
+        .title-cnt{
+            padding:10px 0px;
+            font-size:1.5rem;
+        }
+        .answers-cnt i{
+            margin-left:10px;
+        }
+        .answers-cnt section{
+            padding:10px 0px;
+        }
+
+
+        .question{
+            display: none;
+        }
+        #submit-cnt a{
+            color: white;
+            background: #5391d2;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .actbtn{
+            color: white;
+            background: #5391d2;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .result{
+            display:none;
+        }
     </style>
 
+    <script>
+
+        $(function () {
+
+            grade = {};
+            $(".question").each(function (i, v) {
+                grade[i] = 0;
+            });
+
+            $('input').iCheck({
+                checkboxClass: 'icheckbox',
+                // checkboxClass: 'icheckbox_minimal-blue',
+                radioClass: 'iradio_square-blue',
+                ifClicked:function () {
+                }
+                // radioClass: 'iradio',
+            });
+            $('input').on("ifClicked", function () {
+                var val = $(this).val();
+                var parentcnt = $(this).parents(".question");
+                var index = $(".question").index($(this).parents(".question"));
+
+                if (parentcnt.hasClass(".reverse-score")) {
+                    val = "4321".split("")[val - 1];
+                }
+                grade[index] = val;
+            });
+
+
+            window.questionList = $(".question").size();
+            window.answerList = [];
+            $(".actionbtn").click(function () {
+                var index = $(this).index();
+
+                var vindex = $(".question:visible").index();
+
+                $(".question").hide();
+
+                if($(".question").eq(vindex + 1).length == 0){
+                    $(".question").eq(vindex).show(); // show the last one
+                    $("#navbtn-cnt").hide();
+                    $("#submit-cnt").show();
+                    return;
+                }else{
+                    $(".question").eq(vindex + 1).show();
+                }
+
+            });
+
+
+            $("#submit").click(function () {
+
+                $(".question").each(function () {
+
+                    sum = 0;
+                    for(var key in grade){
+                        sum += Number(grade[key]);
+                    }
+                });
+
+                var result = sum / (Object.keys(grade).length * 4);
+
+                var scoreStr = "您好！你的得分是 " + sum + " 分，";
+
+                var desc = "";
+                if(result < 0.5){
+                    desc = "恭喜您无抑郁症！ ";
+                }else if(result >= 0.5 && result <= 0.59){
+                    desc = "有轻度抑郁症，建议调整好心态，调节饮食，睡眠，多运动！ ";
+                }else if(result >= 0.6 && result <= 0.69){
+                    desc = "有中至重度抑郁症，建议您咨询医生！";
+                }else{
+                    desc = "有重度抑郁症，建议您咨询医生！ ";
+                }
+
+                $("#result .answers-cnt").html(scoreStr + desc);
+                $(".question").hide();
+                $("#result").show();
+
+                $("#submit-cnt").hide();
+                $("#return-cnt").show();
+
+            });
+
+
+            //返回按钮
+            $("#return-cnt").click(function () {
+
+            });
+
+
+        });
+    </script>
 </head>
 <body>
 
-
-
     <div class="part1">
-        <div class="part1-cnt">
-            <div>第一题</div>
-            <div>我感到情绪沮丧，郁闷</div>
-            <div>
-                <section>A.无/偶尔有</section>
-                <section>B.有时有</section>
-                <section>C.经常有</section>
-                <section>D.总是如此</section>
+        <div class="part1-cnt ">
+            <div class="question" style="display:block;">
+                <div class="title-cnt" style="text-align:center;">第一题</div>
+                <div>1.我感到情绪沮丧，郁闷</div>
+                <div class="answers-cnt">
+                    <section><input name="itembox-1" type="radio" value="1"><i>A.无/偶尔有</i></section>
+                    <section><input name="itembox-1" type="radio" value="2"><i>B.有时有</i></section>
+                    <section><input name="itembox-1" type="radio" value="3"><i>C.经常有</i></section>
+                    <section><input name="itembox-1" type="radio" value="4"><i>D.总是如此</i></section>
+                </div>
             </div>
+
+
+            <div class="question reverse-score">
+                <div class="title-cnt" style="text-align:center;">第二题</div>
+                <div>2.我感到早晨心情最好</div>
+                <div class="answers-cnt">
+                    <section><input name="itembox-2" type="radio" value="1"><i>A.无/偶尔有</i></section>
+                    <section><input name="itembox-2" type="radio" value="2"><i>B.有时有</i></section>
+                    <section><input name="itembox-2" type="radio" value="3"><i>C.经常有</i></section>
+                    <section><input name="itembox-2" type="radio" value="4"><i>D.总是如此</i></section>
+                </div>
+            </div>
+
+
+            <div class="question">
+                <div class="title-cnt" style="text-align:center;">第三题</div>
+                <div>3.要哭或想哭</div>
+                <div class="answers-cnt">
+                    <section><input name="itembox-3" type="radio" value="1"><i>A.无/偶尔有</i></section>
+                    <section><input name="itembox-3" type="radio" value="2"><i>B.有时有</i></section>
+                    <section><input name="itembox-3" type="radio" value="3"><i>C.经常有</i></section>
+                    <section><input name="itembox-3" type="radio" value="4"><i>D.总是如此</i></section>
+                </div>
+            </div>
+
+
+            <div class="result" id="result">
+                <div class="title-cnt" style="text-align:center;">测验结果</div>
+                <div class="answers-cnt" style="text-align:center;">
+                </div>
+            </div>
+
         </div>
     </div>
 
+
+
     <div class="part2">
-        <a>上一题</a>
-        <a>下一题</a>
+        <div id="navbtn-cnt" class="clearfix">
+            <!--<div class="fleft actionbtn" style="margin-left:10%;">-->
+                <!--<img style="vertical-align: middle;" src="imgs/before.png"/>-->
+                <!--<span>上一题</span>-->
+            <!--</div>-->
+
+            <div class="fright actionbtn" style="margin-right:10%;">
+                <span>下一题</span>
+                <img style="vertical-align: middle;" src="imgs/next.png"/>
+            </div>
+        </div>
+        <div id="submit-cnt" class="" style="text-align:center;display:none;">
+            <a id="submit" class="actbtn" href="#">提交答案</a>
+        </div>
+
+        <div id="return-cnt" class="" style="text-align:center;display:none;">
+            <a id="returnBtn" class="actbtn" href="#">返回</a>
+        </div>
     </div>
     <div class="part3">
-        我是进度条
+        <!--我是进度条-->
     </div>
 
 
